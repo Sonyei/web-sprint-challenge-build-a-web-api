@@ -2,11 +2,7 @@
 const express = require("express");
 const projects = require("./projects-model");
 const router = express.Router();
-const {
-	validateProjectId,
-	validateProjectBody,
-	validateActionsBody,
-} = require("../middleware");
+const { validateProjectId, validateProjectBody } = require("../middleware");
 
 //Call anything available.
 router.get("/", async (req, res, next) => {
@@ -21,6 +17,11 @@ router.get("/", async (req, res, next) => {
 //Ensuring ID exists before call.
 router.get("/:id", validateProjectId(), async (req, res) => {
 	res.status(200).json(req.projectsID);
+});
+
+router.get("/:id/actions", validateProjectId(), (req, res) => {
+	// console.log(req.projectsID);
+	res.status(200).json(req.projectsID.actions);
 });
 
 //Ensuring post body is properly structured and exists before call.
