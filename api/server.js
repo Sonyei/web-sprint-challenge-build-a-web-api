@@ -10,6 +10,8 @@ server.use(express.json());
 server.use("/", welcomeRouter);
 server.use("/api/actions", actionsRouter);
 server.use("/api/projects", projectsRouter);
+
+//Why is next required here or PUT routes throw an error? Research.
 server.use((err, req, res, next) => {
 	console.log(err);
 	res.status(500).json({

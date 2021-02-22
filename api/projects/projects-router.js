@@ -33,7 +33,7 @@ router.post("/", validateProjectBody(), async (req, res, next) => {
 	}
 });
 
-//Ensuring ID exists at all, and then checking body before call. Autoformatting is satan.
+//Ensuring ID exists at all, and then checking body before call. Autoformatting is Satan.
 router.put(
 	"/:id",
 	validateProjectId(),
@@ -52,7 +52,7 @@ router.put(
 router.delete("/:id", validateProjectId(), async (req, res, next) => {
 	try {
 		await projects.remove(req.params.id);
-		res.status(204).end;
+		res.status(204).end();
 	} catch (err) {
 		next(err);
 	}
