@@ -13,6 +13,9 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 */
 
+
+// API is deployed @ https://lambda-sprint.herokuapp.com/api/projects
+
 const server = require("./api/server");
 const port = process.env.PORT || 4000;
 

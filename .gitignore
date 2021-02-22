@@ -91,6 +91,3 @@ typings/
 
 # test db
 test.db3
-
-#Environment variables
-.env

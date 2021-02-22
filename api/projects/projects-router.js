@@ -19,6 +19,7 @@ router.get("/:id", validateProjectId(), async (req, res) => {
 	res.status(200).json(req.projectsID);
 });
 
+//Returns the array of actions from a project object.
 router.get("/:id/actions", validateProjectId(), (req, res) => {
 	// console.log(req.projectsID);
 	res.status(200).json(req.projectsID.actions);
