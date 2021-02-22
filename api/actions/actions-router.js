@@ -40,6 +40,15 @@ router.put(
 		}
 	}
 );
+
+router.delete("/:id", validateActionsId(), async (req, res, next) => {
+	try {
+		await actions.remove(req.params.id);
+		res.status(204).end();
+	} catch (err) {
+		next(err);
+	}
+});
 // get,
 // insert,
 // update,
