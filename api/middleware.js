@@ -58,8 +58,26 @@ function validateActionsBody() {
 	};
 }
 
+function validateProjectBody() {
+	return async (req, res, next) => {
+		const { name, description } = req.body;
+		try {
+			if (!name || !description) {
+				res.status(400).json({
+					message: "Please include a name and description when submitting.",
+				});
+			} else {
+				next();
+			}
+		} catch (err) {
+			next(err);
+		}
+	};
+}
+
 module.exports = {
 	validateActionsId,
 	validateActionsBody,
 	validateProjectId,
+	validateProjectBody,
 };
