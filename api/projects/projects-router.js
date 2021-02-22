@@ -22,6 +22,7 @@ router.get("/:id", validateProjectId(), async (req, res) => {
 //Returns the array of actions from a project object.
 router.get("/:id/actions", validateProjectId(), (req, res, next) => {
 	projects
+		//Sneaky sneaky.
 		.getProjectActions(req.params.id)
 		// console.log(req.projectsID);
 		.then((actions) => res.status(200).json(actions))
