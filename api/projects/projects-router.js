@@ -24,7 +24,7 @@ router.get("/:id/actions", validateProjectId(), (req, res, next) => {
 	projects
 		.getProjectActions(req.params.id)
 		// console.log(req.projectsID);
-		.then(() => res.status(200).json(req.projectsID.actions))
+		.then((actions) => res.status(200).json(actions))
 		.catch((err) => next(err));
 });
 
