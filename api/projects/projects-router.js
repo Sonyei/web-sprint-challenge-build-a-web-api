@@ -20,9 +20,12 @@ router.get("/:id", validateProjectId(), async (req, res) => {
 });
 
 //Returns the array of actions from a project object.
-router.get("/:id/actions", validateProjectId(), (req, res) => {
-	// console.log(req.projectsID);
-	res.status(200).json(req.projectsID.actions);
+router.get("/:id/actions", validateProjectId(), (req, res, next) => {
+	projects
+		.getProjectActions(req.params.id)
+		// console.log(req.projectsID);
+		.then(() => res.status(200).json(req.projectsID.actions))
+		.catch((err) => next(err));
 });
 
 //Ensuring post body is properly structured and exists before call.
@@ -43,6 +46,7 @@ router.put(
 	async (req, res, next) => {
 		try {
 			const updated = await projects.update(req.params.id, req.body);
+			//Why does including a status code break the response object here? Research.
 			res.json(updated);
 		} catch (err) {
 			next(err);
