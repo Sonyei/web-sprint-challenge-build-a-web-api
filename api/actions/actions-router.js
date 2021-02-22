@@ -4,7 +4,6 @@ const actions = require("./actions-model");
 const router = express.Router();
 const { validateActionsId, validateActionsBody } = require("../middleware");
 
-
 //Call anything available.
 router.get("/", async (req, res, next) => {
 	try {
@@ -20,7 +19,6 @@ router.get("/:id", validateActionsId(), async (req, res) => {
 	res.status(200).json(req.actionsID);
 });
 
-
 //Ensuring post body is properly structured and exists before call.
 router.post("/", validateActionsBody(), async (req, res, next) => {
 	try {
@@ -32,18 +30,21 @@ router.post("/", validateActionsBody(), async (req, res, next) => {
 	}
 });
 
-
 //Ensuring ID exists at all, and then checking body before call.
-router.put("/:id", validateActionsId(), validateActionsBody(), async (req, res, next) => {
+router.put(
+	"/:id",
+	validateActionsId(),
+	validateActionsBody(),
+	async (req, res, next) => {
 		try {
 			const updated = await actions.update(req.params.id, req.body);
-			res.status(204).json(updated);
+
+			res.json(updated);
 		} catch (err) {
 			next(err);
 		}
 	}
 );
-
 
 //Destroying everything you love.
 router.delete("/:id", validateActionsId(), async (req, res, next) => {
@@ -54,7 +55,6 @@ router.delete("/:id", validateActionsId(), async (req, res, next) => {
 		next(err);
 	}
 });
-
 
 // get,
 // insert,

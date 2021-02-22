@@ -43,7 +43,7 @@ router.put(
 	async (req, res, next) => {
 		try {
 			const updated = await projects.update(req.params.id, req.body);
-			res.status(204).json(updated);
+			res.json(updated);
 		} catch (err) {
 			next(err);
 		}
